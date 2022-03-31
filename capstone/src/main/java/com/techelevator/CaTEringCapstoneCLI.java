@@ -18,7 +18,7 @@ public class CaTEringCapstoneCLI {
 		this.menu = menu;
 	}
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		Menu menu = new Menu();
 		//CaTEringCapstoneCLI cli = new CaTEringCapstoneCLI(menu);
 		menu.run();

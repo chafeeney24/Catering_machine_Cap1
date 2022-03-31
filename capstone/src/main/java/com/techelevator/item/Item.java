@@ -17,7 +17,11 @@ public abstract class Item {
     public abstract String printMessage();
 
     public String productInfo(){
-      return slotLocation + ": " + name + " " + price + " " + quantityAvailable + " available";
+        String forInfo = name;
+        while(forInfo.length() < 17){
+           forInfo = forInfo + " ";
+        }
+      return slotLocation + ": " +  forInfo + " $" + price + " " + quantityAvailable + " available | ";
     }
 
     public void setQuantityAvailable(int quantityAvailable) {

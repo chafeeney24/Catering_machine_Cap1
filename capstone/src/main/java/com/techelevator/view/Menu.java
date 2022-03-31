@@ -17,13 +17,19 @@ public class Menu {
         }
     }
     Map<String , Item> currentInventory = stocker.stockItems();
-    boolean keepRunning;
+    //boolean keepRunning;
 
     public void run() {
         UserInput userInput = new UserInput();
+        DisplayMenu displayMenu = new DisplayMenu();
+        boolean keepRunning = true;
 
         while (keepRunning) {
-            userInput.showMainMenu();
+            String choice = UserInput.showMainMenu();
+            if(choice.equals("Display")){
+                displayMenu.run();
+            }
+
             keepRunning = false;
         }
     }

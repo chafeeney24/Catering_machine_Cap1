@@ -5,15 +5,12 @@ import java.util.Scanner;
 public class UserInput {
 
     private static Scanner userInput = new Scanner(System.in);
-    static DisplayMenu displayMenu = new DisplayMenu();
-    static PurchaseMenu purchaseMenu = new PurchaseMenu();
-    static Menu menu = new Menu();
+//    static DisplayMenu displayMenu = new DisplayMenu();
+//    static PurchaseMenu purchaseMenu = new PurchaseMenu();
+//    static Menu menu = new Menu();
 
-    public static void showMainMenu(){
+    public static String showMainMenu(){
 
-
-        System.out.println("********************************");
-        System.out.println("********************************");
         System.out.println("Please make a selection: ");
         System.out.println("(D) Display caTEring Items");
         System.out.println("(P) Purchase");
@@ -23,11 +20,16 @@ public class UserInput {
 
         switch(mainMenuReply) {
             case "D":
-                displayMenu.runDisplay();
+                //displayMenu.runDisplay();
+                return "Display";
             case "P":
-                purchaseMenu.run();
+                //purchaseMenu.run();
+                return "Purchase";
             case "E":
-                menu.keepRunning = false;
+                //menu.keepRunning = false;
+                return "Exit";
+            default:
+                return"";
         }
     }
 
