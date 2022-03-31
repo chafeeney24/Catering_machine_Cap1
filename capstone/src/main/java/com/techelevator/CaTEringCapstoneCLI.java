@@ -1,25 +1,19 @@
 package com.techelevator;
 
-import com.techelevator.Utilities.Stocker;
-import com.techelevator.item.Item;
-import com.techelevator.view.DisplayMenu;
-import com.techelevator.view.Menu;
-
-import java.io.FileNotFoundException;
-import java.util.Map;
+import com.techelevator.view.MainMenu;
 
 public class CaTEringCapstoneCLI {
 
 
 
-	private Menu menu;
+	private MainMenu menu;
 
-	public CaTEringCapstoneCLI(Menu menu) {
+	public CaTEringCapstoneCLI(MainMenu menu) {
 		this.menu = menu;
 	}
 
 	public static void main(String[] args) {
-		Menu menu = new Menu();
+		MainMenu menu = new MainMenu();
 		//CaTEringCapstoneCLI cli = new CaTEringCapstoneCLI(menu);
 		menu.run();
 
