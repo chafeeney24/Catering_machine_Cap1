@@ -16,6 +16,10 @@ public abstract class Item {
 
     public abstract String printMessage();
 
+    public String productInfo(){
+      return slotLocation + ": " + name + " " + price + " " + quantityAvailable + " available";
+    }
+
     public void setQuantityAvailable(int quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
     }
