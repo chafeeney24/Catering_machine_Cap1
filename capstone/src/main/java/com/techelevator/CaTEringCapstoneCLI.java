@@ -14,14 +14,9 @@ public class CaTEringCapstoneCLI {
 
 	public static void main(String[] args) {
 		Menu menu = new Menu();
-		CaTEringCapstoneCLI cli = new CaTEringCapstoneCLI(menu);
-		cli.run();
+		//CaTEringCapstoneCLI cli = new CaTEringCapstoneCLI(menu);
+		menu.run();
 	}
 
-	public void run() {
-		while (true) {
-			//  to do -- build out main menu
 
-		}
-	}
 }
