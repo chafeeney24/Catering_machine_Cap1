@@ -9,14 +9,22 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Stocker {
-    String filePath="catering1.csv";
-    File machineContents=new File(filePath);
-    Scanner fileScanner=new Scanner(machineContents);
-    Map<String, Item> selectionMap=new HashMap<>();
-    public Stocker() throws FileNotFoundException {
+    private static String filePath="catering1.csv";
+    private static File machineContents=new File(filePath);
+    private static Scanner fileScanner;
+
+    static {
+        try {
+            fileScanner = new Scanner(machineContents);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Map<String,Item> stockItems(){
+    private static Map<String, Item> selectionMap=new HashMap<>();
+  //  public Stocker() throws FileNotFoundException {}
+
+    public static Map<String,Item> stockItems(){                   //Should we make this static?
         while(fileScanner.hasNextLine()){
             String lineOfText=fileScanner.nextLine();
            String[]productInfo= lineOfText.split(",");

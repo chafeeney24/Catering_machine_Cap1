@@ -44,13 +44,13 @@ public class UserInput {
                 return "";
         }
     }
-
-    public static String displayPurchaseMenu() {
+                                                    //We could pass in totalMoneyProvided into this Method!
+    public static String displayPurchaseMenu(double totalMoneyProvided) {
         System.out.println("(M) Feed Money");
         System.out.println("(S) Select Item");
         System.out.println("(F) Finish Transaction");
-        System.out.println("(B) Go Back to Main Menu");
-
+        //System.out.println("(B) Go Back to Main Menu");
+        System.out.println("\n" + "Current Money Provided: $"+ totalMoneyProvided);
         String purchaseMenuReply = userInput.nextLine().toUpperCase();
 
         switch (purchaseMenuReply) {
@@ -60,8 +60,8 @@ public class UserInput {
                 return "Select Item";
             case "F":
                 return "Finish Transaction";
-            case "B":
-                return "Back";
+//            case "B":
+//                return "Back";
             default:
                 return "";
 
@@ -90,4 +90,10 @@ public class UserInput {
 
         }
     }
+    public static String selectItem(){
+        System.out.println("\n" + "Please input item code: ");
+        String itemSelection = userInput.nextLine().toUpperCase();
+        return itemSelection;
+    }
+
 }

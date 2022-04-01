@@ -8,20 +8,22 @@ import java.util.Map;
 
 public class MainMenu {
     //private Scanner userInput = new Scanner(System.in);
-    Stocker stocker;
     double totalMoneyProvided=0.00;
-    {
-        try {
-            stocker = new Stocker();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    Map<String , Item> currentInventory = stocker.stockItems();
-    //boolean keepRunning;
+//    Stocker stocker;
+//    {
+//        try {
+//            stocker = new Stocker();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+       Map<String , Item> currentInventory = Stocker.stockItems();
+            //boolean keepRunning
+//            PurchaseMenu purchaseMenu =new PurchaseMenu();
+//            DisplayMenu displayMenu = new DisplayMenu();
 
     public void run() {
-        UserInput userInput = new UserInput();
+//        UserInput userInput = new UserInput();
         DisplayMenu displayMenu = new DisplayMenu();
         PurchaseMenu purchaseMenu=new PurchaseMenu();
         boolean keepRunning = true;
