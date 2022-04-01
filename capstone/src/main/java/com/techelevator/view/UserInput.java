@@ -63,7 +63,7 @@ public class UserInput {
 //            case "B":
 //                return "Back";
             default:
-                return "";
+                return "Invalid Response";
 
         }
     }

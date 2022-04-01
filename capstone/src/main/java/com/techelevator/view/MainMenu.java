@@ -36,6 +36,9 @@ public class MainMenu {
             else if(choice.equals("Purchase")){
                 purchaseMenu.run();
             }
+            else if(choice.equals("Exit")){
+                System.out.println("Thank You! Please Come Again.");
+            }
 
             keepRunning = false;
         }
