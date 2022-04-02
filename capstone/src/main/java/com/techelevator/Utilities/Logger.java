@@ -35,7 +35,11 @@ public class Logger {
         this.writer.flush();
 
     }
+    public void writeSales(String logMessage) {                          //We could put date time formatter in this class, and then
+        this.writer.println(logMessage);                            //have the (logMessage) be (formatDateTime + " " + logMessage)
+        this.writer.flush();
 
+    }
     public void close() throws IOException {
         this.writer.close();
     }

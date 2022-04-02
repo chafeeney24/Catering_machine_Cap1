@@ -1,6 +1,7 @@
 package com.techelevator.view;
 
 import com.techelevator.Utilities.Logger;
+import com.techelevator.Utilities.SalesReporter;
 import com.techelevator.Utilities.Stocker;
 import com.techelevator.item.Item;
 
@@ -45,7 +46,8 @@ public class MainMenu {
                 purchaseMenu.run();
             }
             else if(choice.equals("Sales Report")){
-
+                SalesReporter salesReporter=new SalesReporter();
+                salesReporter.logSales(currentInventory);
             }
             else if(choice.equals("Exit")){
                 System.out.println("\u001B[33m" + "Thank You! Please Come Again." + "\u001B[0m");
