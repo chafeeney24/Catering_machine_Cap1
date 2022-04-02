@@ -81,7 +81,7 @@ else{
         totalMoneyProvided -= currentInventory.get(itemSelection).getPrice();
 
 
-        System.out.println(currentInventory.get(itemSelection).getName() + " $" +  currentInventory.get(itemSelection).getPrice() +
+        System.out.println("\n"+currentInventory.get(itemSelection).getName() + " $" +  currentInventory.get(itemSelection).getPrice() +
                 " - Money Remaining: $" + String.format("%.2f", totalMoneyProvided) + "\n" + currentInventory.get(itemSelection).printMessage() + "\n");
 
         super.auditLogger.write(  currentInventory.get(itemSelection).getName() +  " " +

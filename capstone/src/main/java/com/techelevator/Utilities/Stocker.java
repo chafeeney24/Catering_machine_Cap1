@@ -7,9 +7,10 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Stocker {
-    private static String filePath="catering1.csv";
+    private static String filePath="catering.csv";
     private static File machineContents=new File(filePath);
     private static Scanner fileScanner;
 
@@ -21,7 +22,7 @@ public class Stocker {
         }
     }
 
-    private static Map<String, Item> selectionMap=new HashMap<>();
+    private static Map<String, Item> selectionMap=new TreeMap<>();
   //  public Stocker() throws FileNotFoundException {}
 
     public static Map<String,Item> stockItems(){                   //Should we make this static?
