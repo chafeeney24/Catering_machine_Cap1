@@ -1,5 +1,6 @@
 package com.techelevator.view;
 
+import com.techelevator.Utilities.Colors;
 import com.techelevator.Utilities.Logger;
 import com.techelevator.item.Item;
 
@@ -8,9 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PurchaseMenu extends MainMenu {
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-    String formatDateTime = now.format(formatter);
+    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");     //The only time we are using it is when printing to the reports.
+    String formatDateTime = now.format(formatter);                                          //I've put comments in the logger class.
 
 
     public void run() {
@@ -57,7 +58,7 @@ public class PurchaseMenu extends MainMenu {
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
             if(choice.equals("Invalid Response")){
-                System.out.println("\u001B[31m" + "I'm sorry, I didn't understand that. Please enter a response from the list above."+"\n" + "\u001B[0m");
+                System.out.println(Colors.Red + "I'm sorry, I didn't understand that. Please enter a response from the list above."+ "\n" + Colors.Reset);
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
         }
@@ -66,9 +67,10 @@ if(totalMoneyProvided>0){
 
 }
 else{
-            System.out.println("\u001B[33m" + "Thank You. Please Come Again." + "\n" + "\u001B[0m");
+            System.out.println(Colors.Yellow + "Thank You. Please Come Again." + "\n" + Colors.Reset);
         }
-super.run();
+//super.run();                  //  I TOOK THIS OUT AND IT STOPPED THE LOOPING ERROR, WHY DID WE HAVE THIS IN THERE?
+                                // WAS IT JUST FOR IT TO LOOP AS A TEMP FIX?
     }
 
     public void dispenseItem(String itemSelection) {
@@ -82,7 +84,7 @@ super.run();
         System.out.println(currentInventory.get(itemSelection).getName() + " $" +  currentInventory.get(itemSelection).getPrice() +
                 " - Money Remaining: $" + String.format("%.2f", totalMoneyProvided) + "\n" + currentInventory.get(itemSelection).printMessage() + "\n");
 
-        super.auditLogger.write(formatDateTime + " " + currentInventory.get(itemSelection).getName()+  " " +
+        super.auditLogger.write(formatDateTime + " " + currentInventory.get(itemSelection).getName() +  " " +
                 currentInventory.get(itemSelection).getSlotLocation() + " $" + (String.format("%.2f", totalMoneyProvided + currentInventory.get(itemSelection).getPrice())) + " $" + String.format("%.2f", totalMoneyProvided));
 
     }

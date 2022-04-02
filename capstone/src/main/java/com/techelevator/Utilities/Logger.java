@@ -25,8 +25,8 @@ public class Logger {
         }
     }
 
-    public void write(String logMessage) {
-        this.writer.println(logMessage);
+    public void write(String logMessage) {                          //We could put date time formatter in this class, and then
+        this.writer.println(logMessage);                            //have the (logMessage) be (formatDateTime + " " + logMessage)
         this.writer.flush();
 
     }
