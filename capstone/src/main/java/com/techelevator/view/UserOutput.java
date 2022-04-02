@@ -31,5 +31,6 @@ public class UserOutput{
             System.out.print(items.get("D2").productInfo());
             System.out.print(items.get("D3").productInfo());
             System.out.print(items.get("D4").productInfo());
+            System.out.println("\n" + Colors.Cyan+"|**********************************************************************************************************************************************************************|"+Colors.Reset);
         }
     }

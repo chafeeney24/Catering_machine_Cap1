@@ -1,12 +1,6 @@
 package com.techelevator.view;
 
 import com.techelevator.Utilities.Colors;
-import com.techelevator.Utilities.Logger;
-import com.techelevator.item.Item;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class PurchaseMenu extends MainMenu {
 //    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
@@ -46,14 +40,14 @@ public class PurchaseMenu extends MainMenu {
                         if (currentInventory.get(itemSelection).getPrice() <= totalMoneyProvided) {
                             dispenseItem(itemSelection);
                         } else {
-                            System.out.println("\u001B[31m" + "Please enter more money for the item selected." + "\n" + "\u001B[0m");
+                            System.out.println("\u001B[31m" + "Please enter more money for the item selected." + "\u001B[0m");
                         }
                     } else {
-                        System.out.println("\u001B[31m" + "Sorry that Item is no longer available." + "\n" + "\u001B[0m");
+                        System.out.println("\u001B[31m" + "Sorry that Item is no longer available." + "\u001B[0m");
                     }
 
                 } else {
-                    System.out.println("\u001B[31m" + "Please select valid Item" + "\n" + "\u001B[0m");
+                    System.out.println("\u001B[31m" + "Please select valid Item" + "\u001B[0m");
                 }
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
