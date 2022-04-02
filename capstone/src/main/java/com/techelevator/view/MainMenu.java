@@ -12,6 +12,7 @@ public class MainMenu {
 
     Logger auditLogger = new Logger("audit.txt");
     double totalMoneyProvided=0.00;
+
 //    Stocker stocker;
 //    {
 //        try {
