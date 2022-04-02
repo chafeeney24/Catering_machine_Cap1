@@ -1,11 +1,24 @@
 package com.techelevator.view;
 
+import com.techelevator.Utilities.Logger;
 import com.techelevator.item.Item;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class PurchaseMenu extends MainMenu {
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+    String formatDateTime = now.format(formatter);
+
+
     public void run() {
 //        UserInput.displayPurchaseMenu();
 
+//        LocalDateTime now = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+//        String formatDateTime = now.format(formatter);
         String choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
 
         while (!choice.equals("Finish Transaction")) {
@@ -18,9 +31,9 @@ public class PurchaseMenu extends MainMenu {
                 super.totalMoneyProvided += inserted;
                 //System.out.println(super.totalMoneyProvided);
                 if (inserted == 0.00) {
-                    System.out.println("Sorry, your payment was not accepted.");
+                    System.out.println("\u001B[31m" + "Sorry, your payment was not accepted." + "\u001B[0m");
                 }
-                //Log moneyInserted to be logged
+                super.auditLogger.write(formatDateTime +  " MONEY FED: " +"$" + inserted + " $" + totalMoneyProvided);
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
 
@@ -32,19 +45,19 @@ public class PurchaseMenu extends MainMenu {
                         if (currentInventory.get(itemSelection).getPrice() <= totalMoneyProvided) {
                             dispenseItem(itemSelection);
                         } else {
-                            System.out.println("Please enter more money for the item selected." + "\n");
+                            System.out.println("\u001B[31m" + "Please enter more money for the item selected." + "\n" + "\u001B[0m");
                         }
                     } else {
-                        System.out.println("Sorry that Item is no longer available." + "\n");
+                        System.out.println("\u001B[31m" + "Sorry that Item is no longer available." + "\n" + "\u001B[0m");
                     }
 
                 } else {
-                    System.out.println("Please select valid Item" + "\n");
+                    System.out.println("\u001B[31m" + "Please select valid Item" + "\n" + "\u001B[0m");
                 }
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
             if(choice.equals("Invalid Response")){
-                System.out.println("I'm sorry, I didn't understand that. Please enter a response from the list above."+"\n");
+                System.out.println("\u001B[31m" + "I'm sorry, I didn't understand that. Please enter a response from the list above."+"\n" + "\u001B[0m");
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
         }
@@ -53,23 +66,29 @@ if(totalMoneyProvided>0){
 
 }
 else{
-            System.out.println("Thank You. Please Come Again."+"\n");
+            System.out.println("\u001B[33m" + "Thank You. Please Come Again." + "\n" + "\u001B[0m");
         }
 super.run();
     }
 
     public void dispenseItem(String itemSelection) {
         int currentAvailable = currentInventory.get(itemSelection).getQuantityAvailable() - 1;
+
         currentInventory.get(itemSelection).setQuantityAvailable(currentAvailable);
+
         totalMoneyProvided -= currentInventory.get(itemSelection).getPrice();
-        System.out.println(currentInventory.get(itemSelection).getName() + " $" + currentInventory.get(itemSelection).getPrice() +
-                " - Money Remaining: $" + totalMoneyProvided + "\n" + currentInventory.get(itemSelection).printMessage() + "\n");
-        //Log currentInventory.get(itemSelection);
+
+
+        System.out.println(currentInventory.get(itemSelection).getName() + " $" +  currentInventory.get(itemSelection).getPrice() +
+                " - Money Remaining: $" + String.format("%.2f", totalMoneyProvided) + "\n" + currentInventory.get(itemSelection).printMessage() + "\n");
+
+        super.auditLogger.write(formatDateTime + " " + currentInventory.get(itemSelection).getName()+  " " +
+                currentInventory.get(itemSelection).getSlotLocation() + " $" + (String.format("%.2f", totalMoneyProvided + currentInventory.get(itemSelection).getPrice())) + " $" + String.format("%.2f", totalMoneyProvided));
 
     }
 
     public String giveChange(Double totalMoney){
-        double change=totalMoney;
+        double change = totalMoney;
         int numberOfDollars=totalMoney.intValue();
         int cents=(int)Math.ceil((totalMoney-numberOfDollars)*100);
         int numberOfQuarters=0;
@@ -86,12 +105,11 @@ super.run();
         if(cents>=5){
             numberOfNickels=cents/5;
             cents=cents%5;
-            if(cents>0){
-                System.out.println("rounding error");
-            }
+//            if(cents>0){
+//                System.out.println("rounding error");
         }
 
-        String endingMessage="Your change of $"+totalMoney+" will be returned as:";
+        String endingMessage="Your change of $"+ String.format("%.2f", totalMoney) +" will be returned as:";
         if(numberOfDollars>0) {
             endingMessage += "\n" + numberOfDollars + " One dollar bill(s)";
         }
@@ -106,7 +124,7 @@ super.run();
         }
         endingMessage+="\n"+"Thank You! Please come again.";
 
-
+        super.auditLogger.write(formatDateTime +  " CHANGE GIVEN: " + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
 
         return endingMessage;
     }

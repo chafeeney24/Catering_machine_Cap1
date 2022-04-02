@@ -17,16 +17,13 @@ public class UserInput {
 
         switch (mainMenuReply) {
             case "D":
-                //displayMenu.runDisplay();
                 return "Display";
             case "P":
-                //purchaseMenu.run();
                 return "Purchase";
             case "E":
-                //menu.keepRunning = false;
                 return "Exit";
             default:
-                return "";
+                return "Invalid";    // added this to the display option
         }
     }
 
@@ -41,7 +38,7 @@ public class UserInput {
             case "B":
                 return "Back";
             default:
-                return "";
+                return "invalid";
         }
     }
                                                     //We could pass in totalMoneyProvided into this Method!
@@ -50,7 +47,7 @@ public class UserInput {
         System.out.println("(S) Select Item");
         System.out.println("(F) Finish Transaction");
         //System.out.println("(B) Go Back to Main Menu");
-        System.out.println("\n" + "Current Money Provided: $"+ totalMoneyProvided);
+        System.out.println("\n" + "Current Money Provided: $"+ String.format("%.2f", totalMoneyProvided));
         String purchaseMenuReply = userInput.nextLine().toUpperCase();
 
         switch (purchaseMenuReply) {
@@ -95,5 +92,6 @@ public class UserInput {
         String itemSelection = userInput.nextLine().toUpperCase();
         return itemSelection;
     }
+
 
 }

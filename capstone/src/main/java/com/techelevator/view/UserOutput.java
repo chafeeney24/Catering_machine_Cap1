@@ -7,6 +7,7 @@ import java.util.Map;
 public class UserOutput{
 
 
+
     public static void displayItems(Map<String, Item> items){
             System.out.print(items.get("A1").productInfo());
             System.out.print(items.get("A2").productInfo());
