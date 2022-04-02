@@ -1,10 +1,15 @@
 package com.techelevator.Utilities;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Logger {
     private File logFile;
     private PrintWriter writer;
+    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");     //The only time we are using it is when printing to the reports.
+    String formatDateTime = now.format(formatter);
 
 
     public Logger(String pathName) {
@@ -26,7 +31,7 @@ public class Logger {
     }
 
     public void write(String logMessage) {                          //We could put date time formatter in this class, and then
-        this.writer.println(logMessage);                            //have the (logMessage) be (formatDateTime + " " + logMessage)
+        this.writer.println(formatDateTime + " " + logMessage);                            //have the (logMessage) be (formatDateTime + " " + logMessage)
         this.writer.flush();
 
     }
