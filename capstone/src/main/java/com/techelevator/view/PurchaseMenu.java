@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PurchaseMenu extends MainMenu {
-    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");     //The only time we are using it is when printing to the reports.
-    String formatDateTime = now.format(formatter);                                          //I've put comments in the logger class.
+//    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");     //The only time we are using it is when printing to the reports.
+//    String formatDateTime = now.format(formatter);                                          //I've put comments in the logger class.
 
 
     public void run() {
@@ -34,7 +34,7 @@ public class PurchaseMenu extends MainMenu {
                 if (inserted == 0.00) {
                     System.out.println("\u001B[31m" + "Sorry, your payment was not accepted." + "\u001B[0m");
                 }
-                super.auditLogger.write(formatDateTime +  " MONEY FED: " +"$" + inserted + " $" + totalMoneyProvided);
+                super.auditLogger.write(  "MONEY FED: " +"$" + String.format("%.2f", inserted) + " $" + String.format("%.2f",totalMoneyProvided));
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
 
@@ -84,7 +84,7 @@ else{
         System.out.println(currentInventory.get(itemSelection).getName() + " $" +  currentInventory.get(itemSelection).getPrice() +
                 " - Money Remaining: $" + String.format("%.2f", totalMoneyProvided) + "\n" + currentInventory.get(itemSelection).printMessage() + "\n");
 
-        super.auditLogger.write(formatDateTime + " " + currentInventory.get(itemSelection).getName() +  " " +
+        super.auditLogger.write(  currentInventory.get(itemSelection).getName() +  " " +
                 currentInventory.get(itemSelection).getSlotLocation() + " $" + (String.format("%.2f", totalMoneyProvided + currentInventory.get(itemSelection).getPrice())) + " $" + String.format("%.2f", totalMoneyProvided));
 
     }
@@ -126,7 +126,7 @@ else{
         }
         endingMessage+="\n"+"Thank You! Please come again.";
 
-        super.auditLogger.write(formatDateTime +  " CHANGE GIVEN: " + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
+        super.auditLogger.write("CHANGE GIVEN: " + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
 
         return endingMessage;
     }
