@@ -44,6 +44,9 @@ public class MainMenu {
             else if(choice.equals("Purchase")){
                 purchaseMenu.run();
             }
+            else if(choice.equals("Sales Report")){
+
+            }
             else if(choice.equals("Exit")){
                 System.out.println("\u001B[33m" + "Thank You! Please Come Again." + "\u001B[0m");
                 keepRunning = false;

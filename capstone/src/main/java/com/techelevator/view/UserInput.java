@@ -22,6 +22,8 @@ public class UserInput {
                 return "Purchase";
             case "E":
                 return "Exit";
+            case "S":
+                return "Sales Report";
             default:
                 return "Invalid";    // added this to the display option
         }
