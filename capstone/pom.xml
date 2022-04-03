@@ -34,7 +34,10 @@
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-rules</artifactId>
             <version>1.19.0</version>
+<<<<<<< HEAD
             <scope>test</scope>
+=======
+>>>>>>> 05138f239602f4d725efba2f238beb69550d725c
         </dependency>
     </dependencies>
 	<build>
