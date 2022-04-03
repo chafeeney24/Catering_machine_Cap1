@@ -2,9 +2,8 @@ package com.techelevator.view;
 
 import com.techelevator.Utilities.Colors;
 
-import java.sql.SQLOutput;
-import java.util.Scanner;
 
+import java.util.Scanner;
 public class UserInput {
 
     private static Scanner userInput = new Scanner(System.in);
