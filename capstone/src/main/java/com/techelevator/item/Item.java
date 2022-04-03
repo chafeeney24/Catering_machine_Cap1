@@ -5,7 +5,7 @@ public abstract class Item {
     private double price;
     private String slotLocation;
     private int quantityAvailable = 7;
-    private int totalQuantityPurchased;
+
 
     public Item(String name, double price, String slotLocation){
         this.name = name;
@@ -28,14 +28,6 @@ public abstract class Item {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public void setTotalQuantityPurchased(int totalQuantityPurchased) {
-        this.totalQuantityPurchased = totalQuantityPurchased;
-    }
-
-    public double getTotalSales(){
-        return this.totalQuantityPurchased * this.price;
-    }
-
     public String getName() {
         return name;
     }
@@ -52,8 +44,6 @@ public abstract class Item {
         return quantityAvailable;
     }
 
-    public int getTotalQuantityPurchased() {
-        return totalQuantityPurchased;
-    }
+
 
 }

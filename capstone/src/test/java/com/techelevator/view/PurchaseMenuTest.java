@@ -55,7 +55,7 @@ public class PurchaseMenuTest {
         double totalMoney2 = 1.75;
         int numberOfDollars2 = 1;
         int numberOfQuarters2 = 3;
-        int numberOfDimes2 = 1
+        int numberOfDimes2 = 1;
         String expected2 = "Your change of $"+ String.format("%.2f", totalMoney2) +" will be returned as:" + "\n" + numberOfDollars2 + " One dollar bill(s)" +"\n" + numberOfQuarters2 + " quarter(s)"+ "\n"+"Thank You! Please come again.";
         Assert.assertEquals(expected2, purchaseMenu.giveChange(totalMoney2));
 
