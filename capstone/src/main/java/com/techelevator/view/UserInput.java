@@ -47,7 +47,7 @@ public class UserInput {
             case "B":
                 return "Back";
             default:
-                return "invalid";
+                return "Invalid";
         }
     }
                                                     //We could pass in totalMoneyProvided into this Method!

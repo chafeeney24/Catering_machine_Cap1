@@ -6,24 +6,15 @@ import java.io.IOException;
 
 
 public class PurchaseMenu extends MainMenu {
-//    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");     //The only time we are using it is when printing to the reports.
-//    String formatDateTime = now.format(formatter);                                          //I've put comments in the logger class.
+
 
 
     public void run() {
-//        UserInput.displayPurchaseMenu();
 
-//        LocalDateTime now = LocalDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-//        String formatDateTime = now.format(formatter);
         String choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
 
         while (!choice.equals("Finish Transaction")) {
-//            if(choice.equals("Back")){
-//                super.run();
-//                break;
-//            }
+
             if (choice.equals("Feed Money")) {
                 double inserted = UserInput.feedMoney();
                 super.totalMoneyProvided += inserted;
@@ -34,11 +25,7 @@ public class PurchaseMenu extends MainMenu {
                 String moneyFeed = String.format("%-22s", "MONEY FED:");
                 super.auditLogger.write(moneyFeed + " $" + String.format("%.2f", inserted) + " $" + String.format("%.2f",totalMoneyProvided));
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
-//                try {
-//                    super.auditLogger.close();
-//                } catch (IOException e) {
-//                    System.out.println("Error in closing the file");
-//                }
+
             }
 
             if (choice.equals("Select Item")) {
@@ -65,7 +52,7 @@ public class PurchaseMenu extends MainMenu {
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
         }
-if(totalMoneyProvided>0){
+if(totalMoneyProvided>0.1){
     System.out.println(giveChange(totalMoneyProvided));
     UserOutput.goodByeMessage();
     System.out.println("\n");
@@ -74,8 +61,7 @@ if(totalMoneyProvided>0){
 else{
            UserOutput.goodByeMessage();
         }
-//super.run();                  //  I TOOK THIS OUT AND IT STOPPED THE LOOPING ERROR, WHY DID WE HAVE THIS IN THERE?
-                                // WAS IT JUST FOR IT TO LOOP AS A TEMP FIX?
+//super.run();
     }
 
     public void dispenseItem(String itemSelection) {
@@ -143,11 +129,8 @@ else{
         String formatAuditChange = String.format("%-22s", changeGiven);
 
         super.auditLogger.write(formatAuditChange + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
-//        try {
-//            super.auditLogger.close();
-//        } catch (IOException e) {
-//            System.out.println("Error in closing the file");
-        //}
+
+
         return endingMessage;
     }
 

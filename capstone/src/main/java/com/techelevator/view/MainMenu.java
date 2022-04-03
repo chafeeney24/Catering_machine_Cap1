@@ -14,64 +14,63 @@ import java.util.Map;
 public class MainMenu {
 
 
-    private Logger auditLogger = new Logger(filePathForLogger("audit.txt"));
-    private double totalMoneyProvided=0.00;
+    Logger auditLogger = new Logger("audit.txt");
+    double totalMoneyProvided = 0.00;
 
 
-       Map<String , Item> currentInventory = Stocker.stockItems();
+    Map<String, Item> currentInventory = Stocker.stockItems();
 
 
     public void run() {
 
         DisplayMenu displayMenu = new DisplayMenu();
-        PurchaseMenu purchaseMenu=new PurchaseMenu();
+        PurchaseMenu purchaseMenu = new PurchaseMenu();
         boolean keepRunning = true;
 
         while (keepRunning) {
             String choice = UserInput.showMainMenu();         //Did this to make sure correct responses are passed in.
 
-            if(choice.equals("Invalid")){
+            if (choice.equals("Invalid")) {
                 System.out.println(Colors.Red + "I'm sorry I didn't understand that. Please enter a valid response from list above" + Colors.Reset);
-            }
-            else if(choice.equals("Display")){
+            } else if (choice.equals("Display")) {
                 displayMenu.run();
                 break;
-            }
-            else if(choice.equals("Purchase")){
+            } else if (choice.equals("Purchase")) {
                 purchaseMenu.run();
-            }
-            else if(choice.equals("Sales Report")){
-                SalesReporter salesReporter=new SalesReporter();
+            } else if (choice.equals("Sales Report")) {
+                SalesReporter salesReporter = new SalesReporter();
                 salesReporter.logSales(currentInventory);
 
-            }
-            else if(choice.equals("Full Report")){
+            } else if (choice.equals("Full Report")) {
                 SalesReporter fullReport = new SalesReporter();
                 fullReport.fullSalesReport(currentInventory);
 
-            }
-            else if(choice.equals("Exit")){
+            } else if (choice.equals("Exit")) {
                 UserOutput.goodByeMessage();
                 keepRunning = false;
                 try {
                     auditLogger.close();
                 } catch (IOException e) {
-                    System.out.println("Error closing ");;
+                    System.out.println("Error closing ");
+                    ;
                 }
             }
         }
 
 
-
-        }
-        public String filePathForLogger(String filePath){
-
-        return filePath;
-
     }
 
+    public Logger getAuditLogger() {
+        return auditLogger;
+    }
 
+    public double getTotalMoneyProvided() {
+        return totalMoneyProvided;
+    }
 
+    public Map<String, Item> getCurrentInventory() {
+        return currentInventory;
+    }
 }
 
 

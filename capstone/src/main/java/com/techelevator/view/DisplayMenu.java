@@ -1,5 +1,6 @@
 package com.techelevator.view;
 
+import com.techelevator.Utilities.Colors;
 import com.techelevator.view.UserInput;
 import com.techelevator.view.UserOutput;
 
@@ -14,9 +15,13 @@ public class DisplayMenu extends MainMenu {
         String choice = UserInput.bottomOfDisplay();
         if (choice.equals("Purchase")) {
             purchaseMenu.run();
+            super.run();
         }
         else if (choice.equals("Back")) {
             super.run();
+        }else if (choice.equals("Invalid")){
+            System.out.print(Colors.Red +  "Please select a valid response:" + Colors.Reset);
+            run();
         }
     }
 }

@@ -20,6 +20,7 @@ public class PurchaseMenuTest {
 
 
 
+
     @Test
     public void change_when_total_money_equals_whole_numnber(){
         double totalMoney = 10.00;
