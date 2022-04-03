@@ -15,7 +15,7 @@ public class PurchaseMenuTest {
     PurchaseMenu purchaseMenu = new PurchaseMenu();
     MainMenu mainMenu = new MainMenu();
     Map<String, Item> test = mainMenu.currentInventory;
-    double testMoney = mainMenu.totalMoneyProvided;
+
 
 
 
@@ -124,8 +124,40 @@ public class PurchaseMenuTest {
     @Test
     public void item_is_reduced_from_quantity_available(){
         purchaseMenu.dispenseItem("B2");
-
         Assert.assertEquals(6, test.get("B2").getQuantityAvailable());
+
+        purchaseMenu.dispenseItem("B2");
+        Assert.assertEquals(5, test.get("B2").getQuantityAvailable());
+
+        purchaseMenu.dispenseItem("A2");
+        Assert.assertEquals(6, test.get("A2").getQuantityAvailable());
+
+        //Console prints a negative number for these tests, but we have a filter to only allow it
+        //to get to dispense item if there is enough money.  
     }
 
+    @Test
+    public void correct_item_is_dispensed(){
+        purchaseMenu.dispenseItem("C4");
+        Assert.assertEquals("Chewy Bar", test.get("C4").getName());
+
+        purchaseMenu.dispenseItem("B3");
+        Assert.assertEquals("Papsi", test.get("B3").getName());
+
+        purchaseMenu.dispenseItem("d2");
+        Assert.assertEquals("Burrito", test.get("B2").getName());
+    }
+
+    @Test
+    public void price_is_being_reduced(){
+        purchaseMenu.totalMoneyProvided = 20.00;
+        double expected = 20.00 - 2.45;
+        purchaseMenu.dispenseItem("B3");
+
+        Assert.assertEquals(17.55, purchaseMenu.totalMoneyProvided, .0001);
+        purchaseMenu.dispenseItem("D1");
+        Assert.assertEquals(15.20, purchaseMenu.totalMoneyProvided, .0001);
+        purchaseMenu.dispenseItem("A2");
+        Assert.assertEquals(9.95, purchaseMenu.totalMoneyProvided, .0001);
+    }
 }
