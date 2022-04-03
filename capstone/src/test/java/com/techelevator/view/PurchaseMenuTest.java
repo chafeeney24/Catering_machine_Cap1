@@ -125,10 +125,7 @@ public class PurchaseMenuTest {
     public void item_is_reduced_from_quantity_available(){
         purchaseMenu.dispenseItem("B2");
 
-
-
-
-
+        Assert.assertEquals(6, test.get("B2").getQuantityAvailable());
     }
 
 }
