@@ -1,10 +1,9 @@
 package com.techelevator.view;
 
 import com.techelevator.Utilities.Colors;
-import com.techelevator.view.UserInput;
-import com.techelevator.view.UserOutput;
 
-import java.awt.*;
+
+
 
 public class DisplayMenu extends MainMenu {
 
