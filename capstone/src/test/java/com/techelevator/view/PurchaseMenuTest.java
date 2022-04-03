@@ -64,21 +64,12 @@ public class PurchaseMenuTest {
                 +"\n" + numberOfDimes + " dime(s)";
         Assert.assertEquals(expected, purchaseMenu.giveChange(totalMoney));
 
-<<<<<<< HEAD
         double totalMoney2 = 12.35;
         int numberOfDollars2 = 12;
         int numberOfQuarters2 = 1;
         int numberOfDimes2 = 1;
         String expected2 = "Your change of $"+ String.format("%.2f", totalMoney2) +" will be returned as:" + "\n" + numberOfDollars2 + " One dollar bill(s)" +"\n" + numberOfQuarters2 + " quarter(s)"
                 +"\n" + numberOfDimes2 + " dime(s)";
-=======
-        double totalMoney2 = 1.75;
-        int numberOfDollars2 = 1;
-        int numberOfQuarters2 = 3;
-        int numberOfDimes2 = 1;
-        String expected2 = "Your change of $"+ String.format("%.2f", totalMoney2) +" will be returned as:" + "\n" + numberOfDollars2 + " One dollar bill(s)" +"\n" + numberOfQuarters2 + " quarter(s)"+ "\n"+"Thank You! Please come again.";
->>>>>>> 7a37ab203f8d1324999b37706ec06b2fe7ff563d
-        Assert.assertEquals(expected2, purchaseMenu.giveChange(totalMoney2));
 
         double totalMoney3 = 135.45;
         int numberOfDollars3 = 135;
