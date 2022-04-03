@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class SalesReporter {
 
-    double totalSales = 0.00;
-    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH-mm-ss");     //The only time we are using it is when printing to the reports.
-    String formatDateTime = now.format(formatter);
+    private double totalSales = 0.00;
+    private LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH-mm-ss");     //The only time we are using it is when printing to the reports.
+    private String formatDateTime = now.format(formatter);
 
     public void logSales(Map<String, Item> currentInventory) {
 

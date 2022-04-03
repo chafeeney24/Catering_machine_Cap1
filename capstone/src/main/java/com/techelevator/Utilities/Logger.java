@@ -30,13 +30,13 @@ public class Logger {
         }
     }
 
-    public void write(String logMessage) {                          //We could put date time formatter in this class, and then
-        this.writer.println(formatDateTime + " " + logMessage);                            //have the (logMessage) be (formatDateTime + " " + logMessage)
+    public void write(String logMessage) {
+        this.writer.println(formatDateTime + " " + logMessage);
         this.writer.flush();
 
     }
-    public void writeSales(String logMessage) {                          //We could put date time formatter in this class, and then
-        this.writer.println(logMessage);                            //have the (logMessage) be (formatDateTime + " " + logMessage)
+    public void writeSales(String logMessage) {
+        this.writer.println(logMessage);
         this.writer.flush();
 
     }

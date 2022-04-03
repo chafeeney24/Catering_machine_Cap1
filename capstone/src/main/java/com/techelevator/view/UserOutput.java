@@ -33,4 +33,10 @@ public class UserOutput{
             System.out.print(items.get("D4").productInfo());
             System.out.println("\n" + Colors.Cyan+"|**********************************************************************************************************************************************************************|"+Colors.Reset);
         }
+
+        public static void goodByeMessage(){
+            System.out.println(Colors.Cyan+"*********************************");
+            System.out.println(Colors.Purple+"  Thank You! Please Come Again!  ");
+            System.out.println(Colors.Cyan+"*********************************"+Colors.Reset);
+        }
     }

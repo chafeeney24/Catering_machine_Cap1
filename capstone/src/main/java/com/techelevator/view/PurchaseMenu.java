@@ -2,6 +2,8 @@ package com.techelevator.view;
 
 import com.techelevator.Utilities.Colors;
 
+
+
 public class PurchaseMenu extends MainMenu {
 //    LocalDateTime now = LocalDateTime.now();                                                //Should we put date time in the logger class?!
 //    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");     //The only time we are using it is when printing to the reports.
@@ -28,7 +30,8 @@ public class PurchaseMenu extends MainMenu {
                 if (inserted == 0.00) {
                     System.out.println("\u001B[31m" + "Sorry, your payment was not accepted." + "\u001B[0m");
                 }
-                super.auditLogger.write(  "MONEY FED: " +"$" + String.format("%.2f", inserted) + " $" + String.format("%.2f",totalMoneyProvided));
+                String moneyFeed = String.format("%-22s", "MONEY FED:");
+                super.auditLogger.write(moneyFeed + " $" + String.format("%.2f", inserted) + " $" + String.format("%.2f",totalMoneyProvided));
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
 
@@ -40,14 +43,14 @@ public class PurchaseMenu extends MainMenu {
                         if (currentInventory.get(itemSelection).getPrice() <= totalMoneyProvided) {
                             dispenseItem(itemSelection);
                         } else {
-                            System.out.println("\u001B[31m" + "Please enter more money for the item selected." + "\u001B[0m");
+                            System.out.println(Colors.Red + "Please enter more money for the item selected." + Colors.Reset);
                         }
                     } else {
-                        System.out.println("\u001B[31m" + "Sorry that Item is no longer available." + "\u001B[0m");
+                        System.out.println(Colors.Red + "Sorry that Item is no longer available." + Colors.Reset);
                     }
 
                 } else {
-                    System.out.println("\u001B[31m" + "Please select valid Item" + "\u001B[0m");
+                    System.out.println(Colors.Red + "Please select valid Item" + Colors.Reset);
                 }
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
@@ -57,11 +60,13 @@ public class PurchaseMenu extends MainMenu {
             }
         }
 if(totalMoneyProvided>0){
-    System.out.println(giveChange(totalMoneyProvided)+"\n");
-
+    System.out.println(giveChange(totalMoneyProvided));
+    UserOutput.goodByeMessage();
+    System.out.println("\n");
+    totalMoneyProvided = 0;
 }
 else{
-            System.out.println(Colors.Yellow + "Thank You. Please Come Again." + "\n" + Colors.Reset);
+           UserOutput.goodByeMessage();
         }
 //super.run();                  //  I TOOK THIS OUT AND IT STOPPED THE LOOPING ERROR, WHY DID WE HAVE THIS IN THERE?
                                 // WAS IT JUST FOR IT TO LOOP AS A TEMP FIX?
@@ -78,13 +83,15 @@ else{
         System.out.println("\n"+currentInventory.get(itemSelection).getName() + " $" +  currentInventory.get(itemSelection).getPrice() +
                 " - Money Remaining: $" + String.format("%.2f", totalMoneyProvided) + "\n" + currentInventory.get(itemSelection).printMessage() + "\n");
 
-        super.auditLogger.write(  currentInventory.get(itemSelection).getName() +  " " +
-                currentInventory.get(itemSelection).getSlotLocation() + " $" + (String.format("%.2f", totalMoneyProvided + currentInventory.get(itemSelection).getPrice())) + " $" + String.format("%.2f", totalMoneyProvided));
+        double temp = totalMoneyProvided + currentInventory.get(itemSelection).getPrice();
+        String beforeDispensed = String.format("%.2f", temp);
+        String itemName = String.format("%-20s", currentInventory.get(itemSelection).getName());
+
+        super.auditLogger.write(itemName + currentInventory.get(itemSelection).getSlotLocation() + " $" + beforeDispensed + " $" + String.format("%.2f", totalMoneyProvided));
 
     }
 
     public String giveChange(Double totalMoney){
-        double change = totalMoney;
         int numberOfDollars=totalMoney.intValue();
         int cents=(int)Math.ceil((totalMoney-numberOfDollars)*100);
         int numberOfQuarters=0;
@@ -118,9 +125,12 @@ else{
         if(numberOfNickels>0) {
             endingMessage += "\n" + numberOfNickels + " nickel(s)";
         }
-        endingMessage+="\n"+"Thank You! Please come again.";
+//        endingMessage+="\n"+"Thank You! Please come again.";
 
-        super.auditLogger.write("CHANGE GIVEN: " + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
+        String changeGiven = "CHANGE GIVEN:";
+        String formatAuditChange = String.format("%-22s", changeGiven);
+
+        super.auditLogger.write(formatAuditChange + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
 
         return endingMessage;
     }

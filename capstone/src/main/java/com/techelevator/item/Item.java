@@ -15,7 +15,7 @@ public abstract class Item {
 
 
     public abstract String printMessage();
-                                                            //Clear up forInfo variable name.
+
     public String productInfo(){
         String forInfo = name;
         while(forInfo.length() < 17){
