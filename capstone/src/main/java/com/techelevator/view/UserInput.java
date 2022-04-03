@@ -28,6 +28,8 @@ public class UserInput {
                 return "Exit";
             case "S":
                 return "Sales Report";
+            case "R":
+                return "Full Report";
             default:
                 return "Invalid";    // added this to the display option
         }

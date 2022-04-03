@@ -5,14 +5,17 @@ import com.techelevator.Utilities.Logger;
 import com.techelevator.Utilities.SalesReporter;
 import com.techelevator.Utilities.Stocker;
 import com.techelevator.item.Item;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 
 public class MainMenu {
 
 
-    Logger auditLogger = new Logger("audit.txt");
-    double totalMoneyProvided=0.00;
+    private Logger auditLogger = new Logger(filePathForLogger("audit.txt"));
+    private double totalMoneyProvided=0.00;
 
 
        Map<String , Item> currentInventory = Stocker.stockItems();
@@ -40,14 +43,31 @@ public class MainMenu {
             else if(choice.equals("Sales Report")){
                 SalesReporter salesReporter=new SalesReporter();
                 salesReporter.logSales(currentInventory);
+
+            }
+            else if(choice.equals("Full Report")){
+                SalesReporter fullReport = new SalesReporter();
+                fullReport.fullSalesReport(currentInventory);
+
             }
             else if(choice.equals("Exit")){
                 UserOutput.goodByeMessage();
                 keepRunning = false;
+                try {
+                    auditLogger.close();
+                } catch (IOException e) {
+                    System.out.println("Error closing ");;
+                }
             }
+        }
+
 
 
         }
+        public String filePathForLogger(String filePath){
+
+        return filePath;
+
     }
 
 

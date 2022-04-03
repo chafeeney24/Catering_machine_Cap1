@@ -5,6 +5,7 @@ public abstract class Item {
     private double price;
     private String slotLocation;
     private int quantityAvailable = 7;
+    private int quantitySold = 0;
 
 
     public Item(String name, double price, String slotLocation){
@@ -44,6 +45,11 @@ public abstract class Item {
         return quantityAvailable;
     }
 
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold += quantitySold;
+    }
 
-
+    public int getQuantitySold() {
+        return quantitySold;
+    }
 }

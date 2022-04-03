@@ -2,6 +2,7 @@ package com.techelevator.view;
 
 import com.techelevator.Utilities.Colors;
 
+import java.io.IOException;
 
 
 public class PurchaseMenu extends MainMenu {
@@ -33,6 +34,11 @@ public class PurchaseMenu extends MainMenu {
                 String moneyFeed = String.format("%-22s", "MONEY FED:");
                 super.auditLogger.write(moneyFeed + " $" + String.format("%.2f", inserted) + " $" + String.format("%.2f",totalMoneyProvided));
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
+//                try {
+//                    super.auditLogger.close();
+//                } catch (IOException e) {
+//                    System.out.println("Error in closing the file");
+//                }
             }
 
             if (choice.equals("Select Item")) {
@@ -74,8 +80,9 @@ else{
 
     public void dispenseItem(String itemSelection) {
         int currentAvailable = currentInventory.get(itemSelection).getQuantityAvailable() - 1;
-
         currentInventory.get(itemSelection).setQuantityAvailable(currentAvailable);
+
+        currentInventory.get(itemSelection).setQuantitySold(1);
 
         totalMoneyProvided -= currentInventory.get(itemSelection).getPrice();
 
@@ -89,6 +96,11 @@ else{
 
         super.auditLogger.write(itemName + currentInventory.get(itemSelection).getSlotLocation() + " $" + beforeDispensed + " $" + String.format("%.2f", totalMoneyProvided));
 
+//        try {
+//            super.auditLogger.close();
+//        } catch (IOException e) {
+//            System.out.println("Error in closing the file");
+//        }
     }
 
     public String giveChange(Double totalMoney){
@@ -131,7 +143,11 @@ else{
         String formatAuditChange = String.format("%-22s", changeGiven);
 
         super.auditLogger.write(formatAuditChange + " $" + String.format("%.2f", totalMoneyProvided) + " $0.00");
-
+//        try {
+//            super.auditLogger.close();
+//        } catch (IOException e) {
+//            System.out.println("Error in closing the file");
+        //}
         return endingMessage;
     }
 

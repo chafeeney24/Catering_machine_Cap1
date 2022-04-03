@@ -133,7 +133,7 @@ public class PurchaseMenuTest {
         Assert.assertEquals(6, test.get("A2").getQuantityAvailable());
 
         //Console prints a negative number for these tests, but we have a filter to only allow it
-        //to get to dispense item if there is enough money.  
+        //to get to dispense item if there is enough money.
     }
 
     @Test
