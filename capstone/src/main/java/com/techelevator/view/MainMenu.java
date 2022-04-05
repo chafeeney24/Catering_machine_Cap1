@@ -52,7 +52,7 @@ public class MainMenu {
                     auditLogger.close();
                 } catch (IOException e) {
                     System.out.println("Error closing ");
-                    ;
+
                 }
             }
         }

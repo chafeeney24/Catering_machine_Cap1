@@ -52,7 +52,7 @@ public class PurchaseMenu extends MainMenu {
                 choice = UserInput.displayPurchaseMenu(totalMoneyProvided);
             }
         }
-if(totalMoneyProvided>0.1){
+if(totalMoneyProvided>0.01){
     System.out.println(giveChange(totalMoneyProvided));
     UserOutput.goodByeMessage();
     System.out.println("\n");
@@ -95,6 +95,7 @@ else{
         int numberOfQuarters=0;
         int numberOfDimes=0;
         int numberOfNickels=0;
+
         if(cents>=25){
             numberOfQuarters=cents/25;
             cents=cents%25;
